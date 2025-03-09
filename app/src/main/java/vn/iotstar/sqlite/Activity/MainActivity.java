@@ -54,24 +54,20 @@ public class MainActivity extends AppCompatActivity {
         databaseSQLite();
     }
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        Log.d("DEBUG", "onCreateOptionsMenu đã được gọi!");
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        Log.d("DEBUG", "ID menu được nhấn: " + id); // Kiểm tra ID của menu
+        if (item.getItemId() == R.id.menuAddNotes) {
+            DialogThem(); // Gọi hàm mở dialog thêm Notes
 
-        if (id == R.id.menuAddNotes) {
-            Log.d("DEBUG", "Nút thêm được nhấn!"); // Kiểm tra xem sự kiện có chạy
-            DialogThem();
-            return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
+
     private  void createDatabaseSQLite(){
         Cursor cursor = databaseHandler.GetData("SELECT COUNT(*) FROM Notes");
         cursor.moveToFirst();
@@ -80,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         if(count==0) {
             databaseHandler.QueryData("INSERT INTO Notes VALUES(null,' Vi du SQLite 1')");
             databaseHandler.QueryData("INSERT INTO Notes VALUES(null,' Vi du SQLite 2')");
+
         }
     }
     private void databaseSQLite() {
@@ -108,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
         Button buttonAdd = dialog.findViewById(R.id.buttonThem);
         Button buttonHuy = dialog.findViewById(R.id.buttonHuy);
 
-        // Bắt sự kiện khi nhấn nút thêm
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                     databaseHandler.QueryData("INSERT INTO Notes VALUES(null, '" + name + "')");
                     Toast.makeText(MainActivity.this, "Đã thêm Notes", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
-                    databaseSQLite(); // Gọi hàm load lại dữ liệu
+                    databaseSQLite();
                 }
             }
         });
