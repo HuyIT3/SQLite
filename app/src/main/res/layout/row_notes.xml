@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <!-- TextView hiển thị nội dung ghi chú -->
+    <TextView
+        android:id="@+id/textViewNameNote"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Ví dụ SQLite 1"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:padding="8dp" />
+
+    <!-- Nút chỉnh sửa -->
+    <ImageView
+        android:id="@+id/imageViewEdit"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_edit"
+        android:padding="4dp"
+        android:contentDescription="Edit Note" />
+
+    <!-- Nút xóa -->
+    <ImageView
+        android:id="@+id/imageViewDelete"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_delete"
+        android:padding="4dp"
+        android:contentDescription="Delete Note" />
+
+</LinearLayout>
